@@ -1,0 +1,11 @@
+<h3>{{title}}</h3> <h1></h1>
+{{uname}}
+<form action='/logged_in' method="POST">{%csrf_token%}
+{{forms.as_p}}
+
+<input type ="Submit" value='SignUp'>
+
+
+ <a href="{% url 'edit_profile'  %}">Login with facebook</a>
+
+</form>

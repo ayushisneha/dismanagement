@@ -1,0 +1,13 @@
+{{title}}
+{{social_user}}
+{{social_uid}}
+<form action='/login' method="POST">{%csrf_token%}
+{{forms.as_p}}
+
+<input type ="Submit" value='LogIn'>
+
+ <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
+ <a href="{% url 'social:begin' 'facebook' %}">Login with facebook</a><br>
+
+
+</form>

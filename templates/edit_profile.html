@@ -1,0 +1,10 @@
+<h1>edit your profile here</h1>
+<form action='/update_profile' method="POST">
+{%csrf_token%}
+{{forms.as_p}}
+
+    <input type ="Submit" value='UpdateProfile'>
+</form>
+
+<a href="/password">change password</a>
+<a href="/logout">logout</a>
