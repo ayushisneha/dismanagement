@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^special/', views.special, name='special'),
     url(r'^home/', include('home.urls')),
     url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^lost/', include('lostandfound.urls')),
+    url(r'^lostandfound/', include('lostandfound.urls')),
 ]
