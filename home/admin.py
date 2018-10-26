@@ -1,4 +1,6 @@
 from django.contrib import admin
-from home.models import UserProfileInfo, User
+from home.models import *
 # Register your models here.
 admin.site.register(UserProfileInfo)
+admin.site.register(Alert)
+admin.site.register(City)

@@ -125,3 +125,7 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 LOGIN_URL = '/home/user_login/'
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
