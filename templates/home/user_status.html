@@ -1,0 +1,10 @@
+{% extends 'home/base.html' %}
+{% block body_block %}
+<div class="container">
+{% for key, value in alert.items %}
+      <div class="alert alert-danger">
+          <strong>{{value}}</strong> people reported <strong>{{key}}</strong> in your area!!
+      </div>
+ {% endfor %}
+</div>
+{% endblock %}

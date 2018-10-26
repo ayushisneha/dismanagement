@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from home.forms import UserForm, UserProfileInfoForm
+from home.forms import UserForm, UserProfileInfoForm, ReportForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-
+from .models import *
 
 def index(request):
     return render(request, 'home/index.html')
@@ -19,6 +19,8 @@ def special(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+
 
 
 def register(request):
@@ -65,3 +67,36 @@ def user_login(request):
             return HttpResponse("Invalid login details given")
     else:
         return render(request, 'home/login.html', {})
+
+@login_required
+def user_status(request):
+    print(request.user)
+    user_instance = UserProfileInfo.objects.get(user=request.user)
+    city=user_instance.city
+    # alert_instance=Alert.objects.get(city_name=city)
+    alert={}
+    for item in Alert.objects.filter(city_name__city_name=city):
+        alert[item.alert_name] = item.unsafe_peoples
+    print(alert)
+    return render(request, 'home/user_status.html',
+                           {'alert': alert})
+
+
+@login_required
+def report(request):
+    if request.method == 'POST':
+        report_form = ReportForm(data=request.POST)
+        if report_form.is_valid():
+            item = report_form.save(commit=False)
+            item.save()
+        else:
+            print(report_form.errors)
+    else:
+        report_form = ReportForm()
+    return render(request, 'home/report.html',
+                  {'report_form': report_form})
+
+
+def disaster(request):
+    return render(request, 'home/disaster.html')
+

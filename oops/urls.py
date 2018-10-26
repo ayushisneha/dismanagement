@@ -17,10 +17,18 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url,include
 from home import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^special/', views.special, name='special'),
     url(r'^home/', include('home.urls')),
     url(r'^logout/$', views.user_logout, name='logout'),
-]
+    url(r'^user_status/', views.user_status, name='user_status'),
+    url(r'^update_status/', views.report, name='update_status'),
+    url(r'^disaster/', views.disaster, name='disaster'),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

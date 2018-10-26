@@ -1,0 +1,17 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+
+        <h1>Report Your Status Here</h1>
+<form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ report_form.as_p }}
+          <input type="submit" name="" value="Report">
+        </form>
+        
+
+    </div>
+  </div>
+{% endblock %}
